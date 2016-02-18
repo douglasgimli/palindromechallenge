@@ -20,7 +20,6 @@
 	var palindrome = (function() {
 		var ignoreCapitalLetters = true;
 		var ignorePunctuation = true;
-		var wordDivider = ' ';
 
 		function isPalindrome(value) {
 
@@ -34,12 +33,15 @@
 				value = value.replace(/[^a-zA-Z 0-9]/g, '');
 			}
 
+			// Remove the word divider
+			value = value.replace(/[ ]/g, '');
+
 			// Make a array from chars
 			var reverseValue = value.split('');
 			// Reverse the array values
-			reverseValue.reverse();
+			reverseValue = reverseValue.reverse();
 			// Join the array values into string again
-			reverseValue.join('');
+			reverseValue = reverseValue.join('');
 
 			// Compare the reverse sentence with the original one
 			return reverseValue === value;
