@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Palindrome Challenge</title>
+</head>
+<body>
+	<h1>Palindrome Challenge</h1>
+	<h3>Write your sentence below and find if it is a palindrome</h3>
+
+	<input type="text" id="sentence" name="sentence" value="" onkeyup="palindrome.test('sentence')" style="padding:5px; width:20%" />
+	<span id="response" style="display:block; margin:5px 0 0 0;"></span>
+
+	<script type="text/javascript">
+	/*
+	Palindrome Challenge
+	by @douglasgimli
+
+	The default values can be changed by the user needs
+	*/
+	var palindrome = (function() {
+		var ignoreCapitalLetters = true;
+		var ignorePunctuation = true;
+		var wordDivider = ' ';
+
+		function isPalindrome(value) {
+
+			// Ignore capital letters from the sentence?
+			if (ignoreCapitalLetters) {
+				value = value.toLowerCase();
+			}
+
+			// Ignore the punctuation from the sentence?
+			if (ignorePunctuation) {
+				value = value.replace(/[^a-zA-Z 0-9]/g, '');
+			}
+
+			// Make a array from chars
+			var reverseValue = value.split('');
+			// Reverse the array values
+			reverseValue.reverse();
+			// Join the array values into string again
+			reverseValue.join('');
+
+			// Compare the reverse sentence with the original one
+			return reverseValue === value;
+		}
+
+		return {
+			test:function() {
+				if (isPalindrome(document.getElementById('sentence').value)) {
+					document.getElementById('response').innerHTML = "Your sentence is a palindrome!";
+				}
+				else {
+					document.getElementById('response').innerHTML = "Your sentence isn't a palindrome!";
+				}
+			}
+		};
+	}());
+	</script>
+</body>
+</html>
